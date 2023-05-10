@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import shoppingListWrapper from './components/main-body/shopping-list-wrapper.vue';
+import shoppingListWrapper from './components/mainBody/shoppingListWrapper.vue';
 export default {
   components: {
     shoppingListWrapper,
