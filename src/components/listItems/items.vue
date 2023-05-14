@@ -1,10 +1,9 @@
 <template>
-  <li class="item">
+  <li class="item" :class="{ done: isDone }">
     <div class="content-box">
-      <div class="check-box-padding">
+      <div class="check-box-padding" @click="isDoneToggle">
         <div class="check-box">
           <font-awesome-icon icon="fa-check" class="font-awesome" />
-
         </div>
       </div>
       <div class="content">Zawartosc losowa</div>
@@ -12,19 +11,38 @@
     <div class="tool-box">
       <div class="edit-padding">
         <div class="edit-box">
-            <font-awesome-icon icon="fa-pen" class="font-awesome" />
-
+          <font-awesome-icon icon="fa-pen" class="font-awesome" />
         </div>
       </div>
       <div class="delete-padding">
         <div class="delete-box">
-            <font-awesome-icon icon="fa-xmark" class="font-awesome" />
-
+          <font-awesome-icon icon="fa-xmark" class="font-awesome" />
         </div>
       </div>
     </div>
   </li>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      isDone: false,
+    };
+  },
+  methods: {
+    isDoneToggle() {
+      if (this.isDone === false) {
+        this.isDone = true;
+        console.log('if ' + this.isDone);
+        return;
+      }
+      this.isDone = false;
+      console.log('else ' + this.isDone);
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 @use '../../assets/colors';
@@ -59,7 +77,7 @@
       color: colors.$dark-bgc;
       border-radius: 50%;
       .font-awesome {
-        // display: none;
+        display: none;
         position: absolute;
         bottom: -3px;
         color: colors.$done;
@@ -115,7 +133,7 @@
         background-color: colors.$text-color;
         color: colors.$dark-bgc;
         border-radius: 50%;
-        .font-awesome  {
+        .font-awesome {
           bottom: -1px;
           left: 4px;
           font-size: 22px;
@@ -143,6 +161,12 @@
     .content {
       font-size: 1.4rem;
     }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .item {
+    padding: 0.5rem 4rem;
   }
 }
 </style>

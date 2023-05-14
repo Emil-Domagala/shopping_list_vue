@@ -1,9 +1,9 @@
 <template>
   <div class="top">
-    <h1>Lista Zakupów</h1>
+    <h1>Shopping list</h1>
     <div class="main-input-wrapper">
       <imputComponent></imputComponent>
-      <buttonComponent mode="main-button">Dodaj</buttonComponent>
+      <buttonComponent mode="main-button">Add</buttonComponent>
     </div>
   </div>
 </template>

@@ -1,13 +1,16 @@
 <template>
   <div class="background"></div>
   <shopping-list-wrapper></shopping-list-wrapper>
+  <edit-component></edit-component>
 </template>
 
 <script>
 import shoppingListWrapper from './components/mainBody/shoppingListWrapper.vue';
+import editComponent from './components/edit.vue'
 export default {
   components: {
     shoppingListWrapper,
+    editComponent
   },
 };
 </script>

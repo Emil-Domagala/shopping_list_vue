@@ -46,10 +46,16 @@ button {
 //   margin-top: 2rem;
 //   margin-bottom: 2rem;
 //   padding: 0 3rem;
-//   .apply-button,
-//   .cancel-button {
-//     @include button;
-//     width: 150px;
-//   }
+//
 // }
+
+.edit-button {
+  width: 150px;
+}
+
+@media screen and (min-width: 992px) {
+  .edit-button {
+    width: 200px;
+  }
+}
 </style>
