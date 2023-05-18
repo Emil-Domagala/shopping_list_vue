@@ -6,15 +6,15 @@
           <font-awesome-icon icon="fa-check" class="font-awesome" />
         </div>
       </div>
-      <div class="content">Zawartosc losowa</div>
+      <div class="content">{{ prodName }}</div>
     </div>
     <div class="tool-box">
-      <div class="edit-padding">
+      <div class="edit-padding" @click="showEdit">
         <div class="edit-box">
           <font-awesome-icon icon="fa-pen" class="font-awesome" />
         </div>
       </div>
-      <div class="delete-padding">
+      <div class="delete-padding" @click="deleteItem">
         <div class="delete-box">
           <font-awesome-icon icon="fa-xmark" class="font-awesome" />
         </div>
@@ -25,6 +25,16 @@
 
 <script>
 export default {
+  props: {
+    prodName: {
+      required: false,
+      type: String,
+    },
+    id: {
+      required: false,
+      type: String,
+    },
+  },
   data() {
     return {
       isDone: false,
@@ -34,11 +44,19 @@ export default {
     isDoneToggle() {
       if (this.isDone === false) {
         this.isDone = true;
-        console.log('if ' + this.isDone);
         return;
       }
       this.isDone = false;
-      console.log('else ' + this.isDone);
+    },
+    showEdit() {
+      console.log('edit');
+      // this.$store.dispatch('editItem', {
+      //   id: this.id,
+      //   prodName: this.prodName,
+      // });
+    },
+    deleteItem() {
+      this.$store.dispatch('deleteItem', this.id);
     },
   },
 };

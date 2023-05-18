@@ -2,28 +2,18 @@
   <div class="bottom">
     <div class="sub-title">
       <div class="h2"><h2>Products</h2></div>
-      <!-- <div class="warning">Brak produktów do kupienia</div> -->
+      <div class="warning" v-if="!hasAnyProduct">
+        Brak produktów do kupienia
+      </div>
     </div>
 
-    <ul class="list">
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
-      <items></items>
+    <ul class="list" v-if="!!hasAnyProduct">
+      <items
+        v-for="prod in allProducts"
+        :key="prod.id"
+        :id="prod.id"
+        :prodName="prod.name"
+      ></items>
     </ul>
   </div>
 </template>
@@ -35,6 +25,14 @@ export default {
   components: {
     items,
   },
+  computed: {
+    allProducts() {
+      return this.$store.getters.getAllProd;
+    },
+    hasAnyProduct() {
+      return this.$store.getters.hasProd;
+    },
+  },
 };
 </script>
 
@@ -42,7 +40,7 @@ export default {
 @use '../../assets/colors';
 .bottom {
   // Tu trzeba zczytać h top i odjac od 100vh do max-h
-  
+
   .sub-title {
     display: flex;
     flex-direction: column;
@@ -60,8 +58,8 @@ export default {
   .list {
     padding: 0 2rem 1.5rem 2rem;
     max-height: calc(100vh - 156px);
-  overflow: scroll;
-  scroll-behavior: smooth;
+    overflow: scroll;
+    scroll-behavior: smooth;
   }
 }
 </style>
