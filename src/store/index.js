@@ -27,6 +27,14 @@ const store = createStore({
     },
   },
   actions: {
+    addItem(context, data) {
+      const prodId = new Date().getTime().toLocaleString();
+      const newProd = {
+        id: prodId,
+        name: data,
+      };
+      context.commit('addProd', newProd);
+    },
     deleteItem(context, data) {
       const allProd = context.getters.getAllProd;
       const newProdArray = allProd.filter((prod) => prod.id !== data);
@@ -36,6 +44,9 @@ const store = createStore({
   mutations: {
     newProdArray(state, payload) {
       state.allProd = payload;
+    },
+    addProd(state, payload) {
+      state.allProd.unshift(payload);
     },
   },
 });

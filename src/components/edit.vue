@@ -2,7 +2,7 @@
   <div class="edit-wrapper">
     <div class="h2"><h2>Edytuj produkt:</h2></div>
     <div class="edit-input-wrapper">
-      <imput-component></imput-component>
+      <input class="input" type="text" placeholder="Wpisz produkt..." />
     </div>
     <div class="edit-buttons-wrapper">
       <buttonComponent mode="edit-button">Confirm</buttonComponent>
@@ -29,7 +29,7 @@ export default {
 .edit-wrapper {
   position: absolute;
   bottom: 0;
-//   display: none;
+  //   display: none;
 
   flex-direction: column;
   align-items: center;
@@ -49,6 +49,14 @@ export default {
   .edit-input-wrapper {
     width: 100%;
     padding: 0 3rem;
+    .input {
+      padding: 1rem;
+      width: 100%;
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      border: none;
+      border-radius: 8px;
+    }
   }
   .edit-buttons-wrapper {
     display: flex;

@@ -166,7 +166,7 @@ export default {
   }
 }
 
-.done {
+.done {  
   text-decoration: line-through;
   .content-box {
     .check-box-padding {

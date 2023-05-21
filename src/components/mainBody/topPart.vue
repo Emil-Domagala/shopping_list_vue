@@ -2,9 +2,18 @@
   <div class="top">
     <h1>Shopping list</h1>
     <div class="main-input-wrapper">
-      <imputComponent></imputComponent>
-      <buttonComponent mode="main-button">Add</buttonComponent>
+      <input
+        class="input"
+        type="text"
+        placeholder="Wpisz produkt..."
+        ref="inputField"
+        :value="inputContent"
+      />
+      <buttonComponent mode="main-button" @click="addProduct"
+        >Add</buttonComponent
+      >
     </div>
+    <p v-if="errorAccured" class="error">Input cannot be empty!</p>
   </div>
 </template>
 
@@ -16,6 +25,25 @@ export default {
   components: {
     imputComponent,
     buttonComponent,
+  },
+  data() {
+    return {
+      inputContent: null,
+      errorAccured: false,
+    };
+  },
+  methods: {
+    addProduct() {
+      this.errorAccured = false;
+      this.inputContent = this.$refs.inputField.value.trim();
+      if (this.inputContent.length === 0) {
+        this.errorAccured = true;
+        return;
+      }
+      this.$store.dispatch('addItem', this.inputContent);
+      console.log(this.inputContent);
+      this.inputContent = null;
+    },
   },
 };
 </script>
@@ -38,6 +66,10 @@ export default {
     color: colors.$main-color;
     text-transform: uppercase;
   }
+  .error {
+    margin-bottom: 1rem;
+    color: colors.$warning;
+  }
 }
 
 .main-input-wrapper {
@@ -46,6 +78,14 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-bottom: 3rem;
+  .input {
+    padding: 1rem;
+    width: 100%;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    border: none;
+    border-radius: 8px;
+  }
 }
 
 @media screen and (min-width: 992px) {
