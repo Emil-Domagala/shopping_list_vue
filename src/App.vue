@@ -1,16 +1,21 @@
 <template>
   <div class="background"></div>
   <shopping-list-wrapper></shopping-list-wrapper>
-  <edit-component></edit-component>
+  <edit-component v-if='itemToEdit.showEdit' :nameProd='itemToEdit.name' :idProd='itemToEdit.id'></edit-component>
 </template>
 
 <script>
 import shoppingListWrapper from './components/mainBody/shoppingListWrapper.vue';
-import editComponent from './components/edit.vue'
+import editComponent from './components/edit.vue';
 export default {
   components: {
     shoppingListWrapper,
-    editComponent
+    editComponent,
+  },
+  computed: {
+    itemToEdit() {
+      return this.$store.getters.getItemToEdit;
+    },
   },
 };
 </script>

@@ -9,7 +9,7 @@
       <div class="content">{{ prodName }}</div>
     </div>
     <div class="tool-box">
-      <div class="edit-padding" @click="showEdit">
+      <div class="edit-padding" @click="editProduct">
         <div class="edit-box">
           <font-awesome-icon icon="fa-pen" class="font-awesome" />
         </div>
@@ -48,12 +48,13 @@ export default {
       }
       this.isDone = false;
     },
-    showEdit() {
-      console.log('edit');
-      // this.$store.dispatch('editItem', {
-      //   id: this.id,
-      //   prodName: this.prodName,
-      // });
+    editProduct() {
+      const itemToEdit = {
+        id: this.id,
+        name: this.prodName,
+        showEdit:true
+      }
+      this.$store.dispatch('editItem', itemToEdit);
     },
     deleteItem() {
       this.$store.dispatch('deleteItem', this.id);
@@ -166,7 +167,7 @@ export default {
   }
 }
 
-.done {  
+.done {
   text-decoration: line-through;
   .content-box {
     .check-box-padding {

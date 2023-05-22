@@ -2,24 +2,59 @@
   <div class="edit-wrapper">
     <div class="h2"><h2>Edytuj produkt:</h2></div>
     <div class="edit-input-wrapper">
-      <input class="input" type="text" placeholder="Wpisz produkt..." />
+      <input class="input" type="text" :value="valueOfItem" ref="inputField" />
     </div>
     <div class="edit-buttons-wrapper">
-      <buttonComponent mode="edit-button">Confirm</buttonComponent>
+      <buttonComponent mode="edit-button" @click="confirmEditItem"
+        >Confirm</buttonComponent
+      >
 
-      <buttonComponent mode="edit-button">Anuluj</buttonComponent>
+      <buttonComponent mode="edit-button" @click="anulujEditItem"
+        >Anuluj</buttonComponent
+      >
     </div>
   </div>
 </template>
 
 <script>
-import imputComponent from './Base/inputComponent.vue';
 import buttonComponent from './Base/buttonComponent.vue';
 
 export default {
   components: {
-    imputComponent,
     buttonComponent,
+  },
+  data() {
+    return {
+      valueOfItem: '',
+    };
+  },
+  props: ['nameProd', 'idProd'],
+  created() {
+    this.valueOfItem = this.nameProd;
+  },
+  watch: {
+    nameProd() {
+      this.valueOfItem = this.nameProd;
+      console.log(this.nameProd);
+    },
+  },
+  methods: {
+    anulujEditItem() {
+      const itemToEdit = {
+        id: null,
+        name: null,
+        showEdit: false,
+      };
+      this.$store.dispatch('editItem', itemToEdit);
+    },
+    confirmEditItem() {
+      this.valueOfItem = this.$refs.inputField.value;
+      const newName = this.valueOfItem;
+      this.$store.dispatch('editAllProd', {
+        id: this.idProd,
+        name: newName,
+      });
+    },
   },
 };
 </script>

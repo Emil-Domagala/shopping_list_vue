@@ -18,12 +18,10 @@
 </template>
 
 <script>
-import imputComponent from '../Base/inputComponent.vue';
 import buttonComponent from '../Base/buttonComponent.vue';
 
 export default {
   components: {
-    imputComponent,
     buttonComponent,
   },
   data() {
@@ -41,7 +39,6 @@ export default {
         return;
       }
       this.$store.dispatch('addItem', this.inputContent);
-      console.log(this.inputContent);
       this.inputContent = null;
     },
   },

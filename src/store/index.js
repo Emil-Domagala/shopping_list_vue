@@ -16,6 +16,11 @@ const store = createStore({
           name: 'Fish',
         },
       ],
+      itemToEdit: {
+        id: null,
+        name: null,
+        showEdit: false,
+      },
     };
   },
   getters: {
@@ -24,6 +29,9 @@ const store = createStore({
     },
     hasProd(_, getters) {
       return getters.getAllProd && getters.getAllProd.length > 0;
+    },
+    getItemToEdit(state) {
+      return state.itemToEdit;
     },
   },
   actions: {
@@ -40,6 +48,17 @@ const store = createStore({
       const newProdArray = allProd.filter((prod) => prod.id !== data);
       context.commit('newProdArray', newProdArray);
     },
+    editItem(context, data) {
+      context.commit('editItem', data);
+    },
+    editAllProd(context, data) {
+      const allProd = context.getters.getAllProd;
+      const prodIndex = allProd.findIndex((prod) => prod.id === data.id);
+      const newProdArray = (allProd[prodIndex].name = data.name);
+      console.log(allProd);
+      console.log(newProdArray);
+      // context.commit('newProdArray', newProdArray);
+    },
   },
   mutations: {
     newProdArray(state, payload) {
@@ -47,6 +66,9 @@ const store = createStore({
     },
     addProd(state, payload) {
       state.allProd.unshift(payload);
+    },
+    editItem(state, payload) {
+      state.itemToEdit = payload;
     },
   },
 });
