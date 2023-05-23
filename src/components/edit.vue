@@ -4,6 +4,7 @@
     <div class="edit-input-wrapper">
       <input class="input" type="text" :value="valueOfItem" ref="inputField" />
     </div>
+    <p v-if="errorAccured" class="error">Input can not be empty!</p>
     <div class="edit-buttons-wrapper">
       <buttonComponent mode="edit-button" @click="confirmEditItem"
         >Confirm</buttonComponent
@@ -13,6 +14,7 @@
         >Anuluj</buttonComponent
       >
     </div>
+    
   </div>
 </template>
 
@@ -26,6 +28,7 @@ export default {
   data() {
     return {
       valueOfItem: '',
+      errorAccured: false,
     };
   },
   props: ['nameProd', 'idProd'],
@@ -48,12 +51,17 @@ export default {
       this.$store.dispatch('editItem', itemToEdit);
     },
     confirmEditItem() {
-      this.valueOfItem = this.$refs.inputField.value;
-      const newName = this.valueOfItem;
+      this.errorAccured = false;
+      this.valueOfItem = this.$refs.inputField.value.trim();
+      if (this.valueOfItem.length === 0) {
+        this.errorAccured = true;
+        return;
+      }
       this.$store.dispatch('editAllProd', {
         id: this.idProd,
-        name: newName,
+        name: this.valueOfItem,
       });
+      this.anulujEditItem();
     },
   },
 };
@@ -92,6 +100,12 @@ export default {
       border: none;
       border-radius: 8px;
     }
+  }
+  .error {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    color: colors.$warning;
   }
   .edit-buttons-wrapper {
     display: flex;

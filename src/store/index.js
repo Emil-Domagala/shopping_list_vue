@@ -53,11 +53,14 @@ const store = createStore({
     },
     editAllProd(context, data) {
       const allProd = context.getters.getAllProd;
-      const prodIndex = allProd.findIndex((prod) => prod.id === data.id);
-      const newProdArray = (allProd[prodIndex].name = data.name);
-      console.log(allProd);
-      console.log(newProdArray);
-      // context.commit('newProdArray', newProdArray);
+      const newProdArray = allProd.map((prod) => {
+        if (prod.id === data.id) {
+          prod = data;
+        }
+        return prod;
+      });
+
+      context.commit('newProdArray', newProdArray);
     },
   },
   mutations: {

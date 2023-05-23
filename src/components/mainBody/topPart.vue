@@ -13,7 +13,7 @@
         >Add</buttonComponent
       >
     </div>
-    <p v-if="errorAccured" class="error">Input cannot be empty!</p>
+    <p v-if="errorAccured" class="error">Input can not be empty!</p>
   </div>
 </template>
 
