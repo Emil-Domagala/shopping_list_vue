@@ -1,6 +1,6 @@
 <template>
   <div class="edit-wrapper">
-    <div class="h2"><h2>Edytuj produkt:</h2></div>
+    <div class="h2"><h2>Edit product:</h2></div>
     <div class="edit-input-wrapper">
       <input class="input" type="text" :value="valueOfItem" ref="inputField" />
     </div>
@@ -120,7 +120,7 @@ export default {
 
 @media screen and (min-width: 992px) {
   .edit-wrapper {
-    bottom: 20px;
+    bottom: 30px;
     width: 1000px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;

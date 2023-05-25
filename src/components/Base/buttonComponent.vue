@@ -38,16 +38,6 @@ button {
   width: 100px;
 }
 
-// .edit-buttons-wrapper {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-around;
-//   width: 100%;
-//   margin-top: 2rem;
-//   margin-bottom: 2rem;
-//   padding: 0 3rem;
-//
-// }
 
 .edit-button {
   width: 150px;

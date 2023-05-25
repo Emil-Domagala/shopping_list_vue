@@ -3,18 +3,7 @@ const store = createStore({
   state() {
     return {
       allProd: [
-        {
-          id: 'c1',
-          name: 'Milk',
-        },
-        {
-          id: 'c2',
-          name: 'Eggs',
-        },
-        {
-          id: 'c3',
-          name: 'Fish',
-        },
+       
       ],
       itemToEdit: {
         id: null,

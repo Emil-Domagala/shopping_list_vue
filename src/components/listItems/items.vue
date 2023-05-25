@@ -52,12 +52,21 @@ export default {
       const itemToEdit = {
         id: this.id,
         name: this.prodName,
-        showEdit:true
-      }
+        showEdit: true,
+      };
       this.$store.dispatch('editItem', itemToEdit);
     },
     deleteItem() {
       this.$store.dispatch('deleteItem', this.id);
+      this.anulujEditItem();
+    },
+    anulujEditItem() {
+      const itemToEdit = {
+        id: null,
+        name: null,
+        showEdit: false,
+      };
+      this.$store.dispatch('editItem', itemToEdit);
     },
   },
 };

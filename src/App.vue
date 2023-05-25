@@ -1,7 +1,13 @@
 <template>
   <div class="background"></div>
   <shopping-list-wrapper></shopping-list-wrapper>
-  <edit-component v-if='itemToEdit.showEdit' :nameProd='itemToEdit.name' :idProd='itemToEdit.id'></edit-component>
+  <transition>
+    <edit-component
+      v-if="itemToEdit.showEdit"
+      :nameProd="itemToEdit.name"
+      :idProd="itemToEdit.id"
+    ></edit-component>
+  </transition>
 </template>
 
 <script>
@@ -74,5 +80,20 @@ body {
 
     z-index: -1;
   }
+}
+
+.v-leave-to,
+.v-enter-from {
+  opacity: 0;
+  transform: scale(0.8);
+}
+.v-leave-active,
+.v-enter-active {
+  transition: opacity 0.3s, transform 0.3s;
+}
+.v-leave-from,
+.v-enter-to {
+  opacity: 1;
+  transform: scale(1);
 }
 </style>

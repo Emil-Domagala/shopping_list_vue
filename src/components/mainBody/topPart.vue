@@ -8,8 +8,9 @@
         placeholder="Wpisz produkt..."
         ref="inputField"
         :value="inputContent"
+        @keyup.enter='addProduct'
       />
-      <buttonComponent mode="main-button" @click="addProduct"
+      <buttonComponent mode="main-button" @click="addProduct" 
         >Add</buttonComponent
       >
     </div>
