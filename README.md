@@ -1,3 +1,6 @@
+After i wrote shopping list app in vanilla javascript I come up with idea to write it in vue to see how different it is and also to practice rewriting apps to different technologies
+
+
 # shoping_list_vue
 
 This template should help get you started developing with Vue 3 in Vite.
